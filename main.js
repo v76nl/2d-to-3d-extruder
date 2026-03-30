@@ -5,10 +5,10 @@ import { STLExporter } from 'three/addons/exporters/STLExporter.js';
 import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 
 const FONT_URLS = {
-    'sans': 'https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-jp@5.0.19/files/noto-sans-jp-japanese-700-normal.woff',
-    'serif': 'https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-jp@5.0.19/files/noto-serif-jp-japanese-700-normal.woff',
-    'dot': 'https://cdn.jsdelivr.net/npm/@fontsource/dotgothic16@5.0.19/files/dotgothic16-japanese-400-normal.woff',
-    'ramp': 'https://cdn.jsdelivr.net/npm/@fontsource/rampart-one@5.0.19/files/rampart-one-japanese-400-normal.woff'
+    'sans': 'https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-jp@5/files/noto-sans-jp-japanese-700-normal.woff',
+    'serif': 'https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-jp@5/files/noto-serif-jp-japanese-700-normal.woff',
+    'dot': 'https://cdn.jsdelivr.net/npm/@fontsource/dotgothic16@5/files/dotgothic16-japanese-400-normal.woff',
+    'ramp': 'https://cdn.jsdelivr.net/npm/@fontsource/rampart-one@5/files/rampart-one-japanese-400-normal.woff'
 };
 
 const state = {
