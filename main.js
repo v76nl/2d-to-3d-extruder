@@ -98,18 +98,43 @@ rootGroup.add(groupBase);
 rootGroup.add(groupRing);
 scene.add(rootGroup);
 
-function flipYCorrectly(geometry) {
-    geometry.scale(1, -1, 1);
-    const index = geometry.index;
-    if (index) {
-        const array = index.array;
-        for (let i = 0; i < array.length; i += 3) {
-            const temp = array[i];
-            array[i] = array[i + 2];
-            array[i + 2] = temp;
+function flipYCorrectly(geometry, scaleX = 1, scaleY = -1, scaleZ = 1) {
+    geometry.scale(scaleX, scaleY, scaleZ);
+    
+    // スケールで反転（鏡像）が生じる場合、面の向き（法線）が裏返るため頂点の順番を修正する
+    if (scaleX * scaleY * scaleZ < 0) {
+        const index = geometry.index;
+        if (index) {
+            const array = index.array;
+            for (let i = 0; i < array.length; i += 3) {
+                const temp = array[i];
+                array[i] = array[i + 2];
+                array[i + 2] = temp;
+            }
+        } else {
+            // Non-indexed geometry (ExtrudeGeometry通常時) の対応
+            const pos = geometry.attributes.position;
+            const array = pos.array;
+            for (let i = 0; i < array.length; i += 9) {
+                for (let j = 0; j < 3; j++) {
+                    const temp = array[i + j];
+                    array[i + j] = array[i + 6 + j];
+                    array[i + 6 + j] = temp;
+                }
+            }
+            if (geometry.attributes.uv) {
+                const uv = geometry.attributes.uv.array;
+                for (let i = 0; i < uv.length; i += 6) {
+                    for (let j = 0; j < 2; j++) {
+                        const temp = uv[i + j];
+                        uv[i + j] = uv[i + 4 + j];
+                        uv[i + 4 + j] = temp;
+                    }
+                }
+            }
         }
+        geometry.computeVertexNormals();
     }
-    geometry.computeVertexNormals();
 }
 
 function commandsToShapes(commands) {
@@ -316,7 +341,7 @@ function generateSVG(targetBox) {
         bevelEnabled: false
     });
 
-    geometry.scale(state.svgScale, -state.svgScale, 1);
+    flipYCorrectly(geometry, state.svgScale, -state.svgScale, 1);
     geometry.computeBoundingBox();
 
     const midX = (geometry.boundingBox.max.x + geometry.boundingBox.min.x) / 2;
@@ -366,7 +391,6 @@ function generateRing() {
     const geometry = new THREE.TorusGeometry(state.ringSize, state.ringTube, 16, segs);
     const mesh = new THREE.Mesh(geometry, materialRing);
     
-    // Z位置をベースの厚みに依存するように変更
     const ringZ = state.baseEnabled ? (state.baseThickness / 2) : (state.modelThickness / 2);
     mesh.position.set(state.ringX, state.ringY, ringZ);
     
