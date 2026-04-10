@@ -1026,5 +1026,60 @@ function updateGizmo() {
     gizmoRenderer.render(gizmoScene, gizmoCamera);
 }
 
+// ─── UI 初期化（state → DOM、ここが唯一の初期値設定箇所） ──────────────────
+function initUIFromState() {
+    const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+    const check = (id, val) => { const el = document.getElementById(id); if (el) el.checked = val; };
+    const enable = (id, on) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.disabled = !on;
+        el.style.opacity = on ? '1' : '0.5';
+    };
+    const panelOpacity = (id, on) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.style.opacity = on ? '1' : '0.5';
+        el.style.pointerEvents = on ? 'auto' : 'none';
+    };
+
+    // テキスト
+    set('input-text', state.text);
+    set('font-select', state.fontKey);
+    set('text-size', state.textSize);
+    set('text-spacing', state.textSpacing);
+    set('svg-scale', state.svgScale);
+    set('model-thickness', state.modelThickness);
+    check('mirror-x', state.mirrorX);
+    const valThick = document.getElementById('val-thickness');
+    if (valThick) valThick.textContent = state.modelThickness + 'mm';
+
+    // 土台
+    check('base-enable', state.baseEnabled);
+    panelOpacity('controls-base', state.baseEnabled);
+    set('base-padding', state.basePadding);
+    set('base-thickness', state.baseThickness);
+    set('base-radius', state.baseRadius);
+
+    // ストラップリング
+    check('ring-enable', state.ringEnabled);
+    set('ring-shape', state.ringShape);
+    check('ring-reinforce', state.ringReinforce);
+    check('ring-auto-y', state.ringAutoY);
+
+    [['ring-x','val-ring-x','ringX'], ['ring-y','val-ring-y','ringY'],
+     ['ring-size','val-ring-size','ringSize'], ['ring-tube','val-ring-tube','ringTube'],
+     ['ring-rot','val-ring-rot','ringRot']
+    ].forEach(([sid, nid, prop]) => { set(sid, state[prop]); set(nid, state[prop]); });
+
+    // Auto Top Align 時は ring-y を無効化
+    enable('ring-y', !state.ringAutoY);
+    enable('val-ring-y', !state.ringAutoY);
+
+    // 補強板の表示制御
+    updateReinforceVisibility();
+}
+
+initUIFromState();
 loadFont('sans');
 animate();

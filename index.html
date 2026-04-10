@@ -40,7 +40,7 @@
 
             <div id="controls-text">
                 <label class="control-label">テキスト</label>
-                <input type="text" id="input-text" value="印刷物" class="mb-2">
+                <input type="text" id="input-text" class="mb-2">
                 
                 <label class="control-label">フォント</label>
                 <select id="font-select" class="mb-2">
@@ -52,11 +52,11 @@
 
                 <div class="slider-container">
                     <label class="slider-label">文字サイズ</label>
-                    <input type="range" id="text-size" min="5" max="100" value="10">
+                    <input type="range" id="text-size" min="5" max="100">
                 </div>
                 <div class="slider-container">
                     <label class="slider-label">字間</label>
-                    <input type="range" id="text-spacing" min="-5" max="20" step="0.5" value="-1">
+                    <input type="range" id="text-spacing" min="-5" max="20" step="0.5">
                 </div>
             </div>
 
@@ -65,14 +65,14 @@
                 <input type="file" id="input-file" accept=".svg" class="mb-2">
                 <div class="slider-container">
                     <label class="slider-label">スケール</label>
-                    <input type="range" id="svg-scale" min="0.1" max="5.0" step="0.1" value="1.0">
+                    <input type="range" id="svg-scale" min="0.1" max="5.0" step="0.1">
                 </div>
             </div>
 
             <div class="slider-container mt-2">
                 <label class="slider-label">厚み</label>
-                <input type="range" id="model-thickness" min="1" max="20" step="0.5" value="3">
-                <span id="val-thickness" class="text-xs w-8 text-right font-mono">3mm</span>
+                <input type="range" id="model-thickness" min="1" max="20" step="0.5">
+                <span id="val-thickness" class="text-xs w-8 text-right font-mono"></span>
             </div>
             <div class="flex items-center justify-between mt-2">
                 <label class="text-xs font-bold" for="mirror-x">左右反転</label>
@@ -83,20 +83,20 @@
         <div class="control-group">
             <div class="flex items-center justify-between mb-2">
                 <label class="control-label m-0">土台</label>
-                <input type="checkbox" id="base-enable" checked class="w-4 h-4 accent-blue-600">
+                <input type="checkbox" id="base-enable" class="w-4 h-4 accent-blue-600">
             </div>
-            <div id="controls-base" style="opacity: 1; pointer-events: auto; transition: opacity 0.2s;">
+            <div id="controls-base" style="transition: opacity 0.2s;">
                 <div class="slider-container">
                     <label class="slider-label">余白</label>
-                    <input type="range" id="base-padding" min="0" max="20" step="0.5" value="2">
+                    <input type="range" id="base-padding" min="0" max="20" step="0.5">
                 </div>
                 <div class="slider-container">
                     <label class="slider-label">厚み</label>
-                    <input type="range" id="base-thickness" min="0.5" max="10" step="0.5" value="2">
+                    <input type="range" id="base-thickness" min="0.5" max="10" step="0.5">
                 </div>
                 <div class="slider-container">
                     <label class="slider-label">角丸</label>
-                    <input type="range" id="base-radius" min="0" max="20" step="0.5" value="5">
+                    <input type="range" id="base-radius" min="0" max="20" step="0.5">
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@
         <div class="control-group">
             <div class="flex items-center justify-between mb-2">
                 <label class="control-label m-0">ストラップリング</label>
-                <input type="checkbox" id="ring-enable" checked class="w-4 h-4 accent-blue-600">
+                <input type="checkbox" id="ring-enable" class="w-4 h-4 accent-blue-600">
             </div>
             <div id="controls-ring">
                 <label class="control-label mt-1">形状</label>
@@ -122,33 +122,33 @@
 
                 <div class="flex items-center justify-between mb-1">
                     <label class="text-xs font-bold text-blue-500">上端に自動配置</label>
-                    <input type="checkbox" id="ring-auto-y" checked class="w-4 h-4 accent-blue-500">
+                    <input type="checkbox" id="ring-auto-y" class="w-4 h-4 accent-blue-500">
                 </div>
 
                 <div class="slider-container">
                     <label class="slider-label">X座標</label>
-                    <input type="range" id="ring-x" min="-100" max="100" step="0.5" value="0">
-                    <input type="number" id="val-ring-x" class="slider-val" value="0" step="0.5">
+                    <input type="range" id="ring-x" min="-100" max="100" step="0.5">
+                    <input type="number" id="val-ring-x" class="slider-val" step="0.5">
                 </div>
                 <div class="slider-container">
                     <label class="slider-label">Y座標</label>
-                    <input type="range" id="ring-y" min="-100" max="100" step="0.5" value="10" disabled style="opacity: 0.5;">
-                    <input type="number" id="val-ring-y" class="slider-val" value="10" step="0.5" disabled style="opacity: 0.5;">
+                    <input type="range" id="ring-y" min="-100" max="100" step="0.5">
+                    <input type="number" id="val-ring-y" class="slider-val" step="0.5">
                 </div>
                 <div class="slider-container">
                     <label class="slider-label">サイズ</label>
-                    <input type="range" id="ring-size" min="1" max="20" step="0.5" value="3">
-                    <input type="number" id="val-ring-size" class="slider-val" value="3" step="0.5">
+                    <input type="range" id="ring-size" min="1" max="20" step="0.5">
+                    <input type="number" id="val-ring-size" class="slider-val" step="0.5">
                 </div>
                 <div class="slider-container">
                     <label class="slider-label">太さ</label>
-                    <input type="range" id="ring-tube" min="0.5" max="5" step="0.1" value="1">
-                    <input type="number" id="val-ring-tube" class="slider-val" value="1" step="0.1">
+                    <input type="range" id="ring-tube" min="0.5" max="5" step="0.1">
+                    <input type="number" id="val-ring-tube" class="slider-val" step="0.1">
                 </div>
                 <div class="slider-container">
                     <label class="slider-label">回転</label>
-                    <input type="range" id="ring-rot" min="0" max="360" step="15" value="0">
-                    <input type="number" id="val-ring-rot" class="slider-val" value="0" step="15">
+                    <input type="range" id="ring-rot" min="0" max="360" step="15">
+                    <input type="number" id="val-ring-rot" class="slider-val" step="15">
                 </div>
             </div>
         </div>
