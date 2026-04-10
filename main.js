@@ -577,7 +577,7 @@ function generateRingReinforcement(baseTopY) {
 
     // リング中心を原点とした相対Y
     const localBaseY = baseTopY - state.ringY;
-    if (localBaseY >= 0 || localBaseY <= -outerR * 2) return; // 範囲外
+    if (localBaseY >= 0) return; // ベースがリング中心以上なら不要
 
     const shape = new THREE.Shape();
 
