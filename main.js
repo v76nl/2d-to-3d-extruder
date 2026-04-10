@@ -18,7 +18,7 @@ const state = {
     text: '印刷物',
     fontKey: 'sans',
     textSize: 10,
-    textSpacing: 1, 
+    textSpacing: -1,
     modelThickness: 3,
     svgContent: null,
     svgScale: 1.0,
