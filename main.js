@@ -533,7 +533,7 @@ function generateRing() {
     let geometry;
 
     if (segs === 32) {
-        // 真円: アニュラス(外円-内円)の Shape を押し出して X軸で 90° 回転させた中空円柱
+        // 真円: アニュラス(外円-内円)の Shape を Z 方向に押し出した中空円柱
         const outerR = state.ringSize + state.ringTube;
         const innerR = Math.max(0.1, state.ringSize - state.ringTube);
         const cylHeight = state.ringTube * 2;
@@ -550,7 +550,6 @@ function generateRing() {
             curveSegments: 32
         });
         geometry.translate(0, 0, -cylHeight / 2); // Z方向の中心を原点に揃える
-        geometry.rotateX(Math.PI / 2);             // リングを直立させる
     } else {
         // その他の形状: トーラス
         geometry = new THREE.TorusGeometry(state.ringSize, state.ringTube, 16, segs);
