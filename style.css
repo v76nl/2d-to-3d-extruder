@@ -81,3 +81,35 @@ input[type="file"] { font-size: 0.8rem; color: #4b5563; }
     color: white; font-size: 1.5rem; pointer-events: none; z-index: 50; display: none;
     background: rgba(0,0,0,0.7); padding: 1rem 2rem; border-radius: 8px;
 }
+
+/* ─── Navigation Gizmo ─── */
+#gizmo-container {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    width: 120px;
+    height: 120px;
+    z-index: 40;
+}
+#gizmo-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    pointer-events: none;
+    border-radius: 50%;
+}
+.gizmo-label {
+    position: absolute;
+    font-size: 11px;
+    font-weight: 800;
+    font-family: 'Inter', sans-serif;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    user-select: none;
+    letter-spacing: 0.02em;
+    transition: opacity 0.15s;
+    padding: 3px;
+    line-height: 1;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    z-index: 41;
+}
+.gizmo-label:hover { filter: brightness(1.3); }
