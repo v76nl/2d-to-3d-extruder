@@ -1,128 +1,226 @@
 /* 全体レイアウト */
-body { margin: 0; overflow: hidden; background-color: #f0f2f5; color: #333; font-family: sans-serif; }
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: #f0f2f5;
+  color: #333;
+  font-family: sans-serif;
+}
 
 /* 左サイドのコントロールパネル */
 #ui-panel {
-    position: absolute;
-    top: 0; left: 0; width: 340px; height: 100vh;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    overflow-y: auto;
-    border-right: 1px solid #ddd;
-    padding: 1rem;
-    z-index: 10;
-    transition: transform 0.3s ease;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 340px;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  overflow-y: auto;
+  border-right: 1px solid #ddd;
+  padding: 1rem;
+  z-index: 10;
+  transition: transform 0.3s ease;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 }
-#ui-panel.collapsed { transform: translateX(-100%); }
+#ui-panel.collapsed {
+  transform: translateX(-100%);
+}
 
 /* パネル表示/非表示ボタン (パネルが collapsed のとき left:10px に移動) */
 #toggle-ui {
-    position: absolute; top: 10px; left: 350px; z-index: 20;
-    background: #3b82f6; color: white; padding: 0.5rem;
-    border-radius: 0.25rem; cursor: pointer;
-    transition: left 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  position: absolute;
+  top: 10px;
+  left: 350px;
+  z-index: 20;
+  background: #3b82f6;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: left 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
-#ui-panel.collapsed + #toggle-ui { left: 10px; }
+#ui-panel.collapsed + #toggle-ui {
+  left: 10px;
+}
 
 /* コントロールグループ共通 */
-.control-group { margin-bottom: 1.25rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 1rem; }
-.control-group:last-child { border-bottom: none; }
-.control-label { display: block; font-size: 0.85rem; color: #4b5563; margin-bottom: 0.25rem; font-weight: 600; }
+.control-group {
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 1rem;
+}
+.control-group:last-child {
+  border-bottom: none;
+}
+.control-label {
+  display: block;
+  font-size: 0.85rem;
+  color: #4b5563;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
 
 /* スライダー行 (ラベル + range + 数値入力 を横並び) */
-.slider-container { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem; }
-.slider-label { flex: 0 0 3.5rem; font-size: 0.75rem; color: #4b5563; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+.slider-label {
+  flex: 0 0 3.5rem;
+  font-size: 0.75rem;
+  color: #4b5563;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 /* スライダー横の数値入力欄 (スピンボタンは非表示) */
 .slider-val {
-    flex: 0 0 2.5rem;
-    font-size: 0.7rem;
-    font-family: monospace;
-    color: #374151;
-    text-align: right;
-    background: transparent;
-    border: none;
-    outline: none;
-    padding: 0;
-    width: 2.5rem;
-    appearance: textfield;
-    -moz-appearance: textfield;
+  flex: 0 0 2.5rem;
+  font-size: 0.7rem;
+  font-family: monospace;
+  color: #374151;
+  text-align: right;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  width: 2.5rem;
+  appearance: textfield;
+  -moz-appearance: textfield;
 }
 .slider-val::-webkit-outer-spin-button,
-.slider-val::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.slider-val::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
 /* フォーム要素共通スタイル */
-input[type="range"] { flex: 1; accent-color: #3b82f6; }
-input[type="number"], input[type="text"], select {
-    background: #fff; border: 1px solid #d1d5db; color: #1f2937;
-    padding: 0.25rem 0.5rem; border-radius: 0.25rem; width: 100%; font-size: 0.9rem;
+input[type="range"] {
+  flex: 1;
+  accent-color: #3b82f6;
+}
+input[type="number"],
+input[type="text"],
+select {
+  background: #fff;
+  border: 1px solid #d1d5db;
+  color: #1f2937;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  width: 100%;
+  font-size: 0.9rem;
 }
 /* slider-val として使うときは上記の枠を打ち消す */
-input[type="number"].slider-val, input[type="number"].slider-val:focus {
-    background: transparent; border: none; border-radius: 0; width: 2.5rem;
-    padding: 0; outline: none;
+input[type="number"].slider-val,
+input[type="number"].slider-val:focus {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  width: 2.5rem;
+  padding: 0;
+  outline: none;
 }
-input[type="file"] { font-size: 0.8rem; color: #4b5563; }
+input[type="file"] {
+  font-size: 0.8rem;
+  color: #4b5563;
+}
 
 /* 汎用ボタン */
 .btn {
-    display: block; width: 100%; padding: 0.75rem; margin-top: 0.5rem;
-    background: #3b82f6; color: white; text-align: center; border-radius: 0.25rem;
-    cursor: pointer; font-weight: bold; border: none; font-size: 1rem;
-    transition: background-color 0.2s;
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  background: #3b82f6;
+  color: white;
+  text-align: center;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+  font-size: 1rem;
+  transition: background-color 0.2s;
 }
-.btn:hover { background: #2563eb; }
+.btn:hover {
+  background: #2563eb;
+}
 
 /* モード切替ボタン (アクティブ/非アクティブ) */
-.btn-mode-active   { background: #3b82f6 !important; color: white !important; }
-.btn-mode-inactive { background: #e5e7eb !important; color: #4b5563 !important; }
+.btn-mode-active {
+  background: #3b82f6 !important;
+  color: white !important;
+}
+.btn-mode-inactive {
+  background: #e5e7eb !important;
+  color: #4b5563 !important;
+}
 
 /* サイズ表示パネル (モノスペース・ダーク背景) */
 .info-display {
-    background: #1f2937; padding: 0.75rem; border-radius: 4px;
-    font-family: monospace; font-size: 0.9rem; color: #4ade80; margin-top: 0.5rem;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+  background: #1f2937;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: #4ade80;
+  margin-top: 0.5rem;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* 処理中オーバーレイ (フォント読み込み時などに表示) */
 #loading {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    color: white; font-size: 1.5rem; pointer-events: none; z-index: 50; display: none;
-    background: rgba(0,0,0,0.7); padding: 1rem 2rem; border-radius: 8px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.5rem;
+  pointer-events: none;
+  z-index: 50;
+  display: none;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 1rem 2rem;
+  border-radius: 8px;
 }
 
 /* ナビゲーションギズモ (右上固定・別レンダラーで描画) */
 #gizmo-container {
-    position: fixed;
-    top: 14px;
-    right: 14px;
-    width: 120px;
-    height: 120px;
-    z-index: 40;
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  width: 120px;
+  height: 120px;
+  z-index: 40;
 }
 /* キャンバス自体はクリック透過 (ラベル div でクリックを受ける) */
 #gizmo-canvas {
-    position: absolute;
-    top: 0; left: 0;
-    pointer-events: none;
-    border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  border-radius: 50%;
 }
 /* 軸ラベル (X/Y/Z) - JS が毎フレーム left/top を更新して追従させる */
 .gizmo-label {
-    position: absolute;
-    font-size: 11px;
-    font-weight: 800;
-    font-family: 'Inter', sans-serif;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-    user-select: none;
-    letter-spacing: 0.02em;
-    transition: opacity 0.15s;
-    padding: 3px;
-    line-height: 1;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-    z-index: 41;
+  position: absolute;
+  font-size: 11px;
+  font-weight: 800;
+  font-family: "Inter", sans-serif;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  user-select: none;
+  letter-spacing: 0.02em;
+  transition: opacity 0.15s;
+  padding: 3px;
+  line-height: 1;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  z-index: 41;
 }
-.gizmo-label:hover { filter: brightness(1.3); }
+.gizmo-label:hover {
+  filter: brightness(1.3);
+}
