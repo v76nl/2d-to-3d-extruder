@@ -1,8 +1,12 @@
-import { loadFont } from './geometry.ts';
-import { initUIFromState, initEvents } from './ui.ts';
-import { animate } from './scene.ts';
+import { loadFont } from "./fonts.ts";
+import { animate } from "./scene.ts";
+import { initEvents, initUIFromState } from "./ui.ts";
+
+if (import.meta.env.DEV) {
+  document.title = `[DEV] ${document.title}`;
+}
 
 initUIFromState();
 initEvents();
-loadFont('sans');
+loadFont("sans");
 animate();
